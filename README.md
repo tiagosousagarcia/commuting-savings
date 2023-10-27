@@ -1,0 +1,1 @@
+Simple Svelte app that displays the amount of money saved commuting by bike, based on Strava data.
