@@ -1,6 +1,7 @@
 <script>
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 	import TransSelector from './TransSelector.svelte';
+	import Stats from './Stats.svelte';
 	// per day ticket
 	let busCost = 3.5;
 	// per hour
@@ -47,3 +48,4 @@
 		</p>
 	</div>
 </div>
+<Stats/>
