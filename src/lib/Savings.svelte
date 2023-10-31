@@ -1,5 +1,6 @@
 <script>
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+	import TransSelector from './TransSelector.svelte';
 	// per day ticket
 	let busCost = 3.5;
 	// per hour
@@ -34,11 +35,7 @@
     }
 </script>
 
-
-<RadioGroup>
-	<RadioItem bind:group={comp} name="comparison" value={"bus"}><i class="fa-solid fa-bus fa-2xl"></i></RadioItem>
-	<RadioItem bind:group={comp} name="comparison" value={"car"}><i class="fa-solid fa-car fa-2xl"></i></RadioItem>
-</RadioGroup>
+<TransSelector bind:comp={comp}/>
 
 
 <div class="px-6 py-24 sm:py-32 lg:px-8">
