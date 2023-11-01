@@ -9,7 +9,7 @@
         // define cost
         let cost = 0
         if (comp == 'bus'){
-            cost = busCost
+            cost = Number(busCost)
         } else if(comp == 'car') {
             cost = carCost * hours
         }
@@ -25,12 +25,13 @@
         oldestDate = oldestDate.sort((a, b) => a-b)
         return oldestDate[0].toLocaleDateString('en-UK')
     }
+    $: console.log(busCost)
 </script>
 
 <div class="px-6 py-24 sm:py-32 lg:px-8">
 	<div class="mx-auto max-w-2xl text-center">
 		<p class="text-base font-semibold leading-7">You have saved</p>
-		<h2 class="mt-2 text-4xl font-bold tracking-tight text-secondary-900-50-token sm:text-6xl">{calculateCost(data, comp)}</h2>
+		<h2 class="mt-2 text-4xl font-bold tracking-tight text-secondary-900-50-token sm:text-6xl">{calculateCost(data, comp, busCost, carCost, hours)}</h2>
 		<p class="mt-6 text-lg leading-8 text-token">
 			commuting by bike versus commuting by <span class="font-semilight text-secondary-700-200-token">{comp}</span> since <span class="font-semilight text-secondary-700-200-token">{getOldestDate(data)}</span>. What are you going to do with all that extra cash?
 		</p>
