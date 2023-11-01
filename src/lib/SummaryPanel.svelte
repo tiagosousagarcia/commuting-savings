@@ -25,7 +25,6 @@
         oldestDate = oldestDate.sort((a, b) => a-b)
         return oldestDate[0].toLocaleDateString('en-UK')
     }
-    $: console.log(busCost)
 </script>
 
 <div class="px-6 py-24 sm:py-32 lg:px-8">
