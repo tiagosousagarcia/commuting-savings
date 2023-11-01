@@ -1,6 +1,4 @@
 <script>
-	import { get } from "svelte/store";
-
 	export let dataset;
 	let stats = [
 		{value: getDistance(dataset), text: "Miles ridden"}, 
