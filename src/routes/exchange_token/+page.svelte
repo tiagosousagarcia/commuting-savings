@@ -1,1 +1,7 @@
-<h1>Authentication successful</h1>
+<script>
+    import { onMount } from 'svelte'
+
+    onMount(() => {
+        window.location = '/dashboard'
+    })
+</script>
