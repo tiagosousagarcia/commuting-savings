@@ -1,5 +1,5 @@
 <script>
-    import Savings from '../lib/Savings.svelte';
+    import Savings from '$lib/Savings.svelte';
     export let data
 </script>
 
