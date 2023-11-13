@@ -1,7 +1,15 @@
 import { CLIENT_SECRET, REFRESH_TOKEN } from '$env/static/private'
 import { PUBLIC_CLIENT_ID } from '$env/static/public'
 
-export async function load({}) {
+export async function load({params, url}) {
+
+    // Gets nr of days from search params
+    let range = 0
+    if (url.searchParams.get('days')) {
+        range = url.searchParams.get('days')
+    } else {
+        range = 30 // in days
+    }
 
     // Gets current access token
     var url = new URL('https://www.strava.com/api/v3/oauth/token'), postparams = {
@@ -20,7 +28,6 @@ export async function load({}) {
     const access_token = refresh.access_token
 
     // Calculates timestamp for date range
-    let range = 30 // in days
     let today = new Date()
     let priorDate = new Date(new Date().setDate(today.getDate() - range));
     let epoch = priorDate.getTime() / 1000
