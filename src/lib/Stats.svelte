@@ -52,8 +52,11 @@
 
 		// reduce nr of days to only weekdays
 		const weekDays = allDays.filter((day) => day.getDay() > 0 && day.getDay() < 6)
+
+		// count nr of days in the dataset
+		let nrDays = new Set(data.map((entry) => new Date(entry.start_date).toDateString())).size;
 		
-		return `${Math.round(data.length / weekDays.length * 100)}%`
+		return `${Math.round(nrDays / weekDays.length * 100)}%`
 	}
 
 </script>
