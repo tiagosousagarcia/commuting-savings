@@ -5,9 +5,29 @@ export async function load({params, url}) {
 
     // Gets nr of days from search params
     let range = 0
-    if (url.searchParams.get('days')) {
-        range = url.searchParams.get('days')
-    } else {
+    if (url.searchParams.get('range')) {
+        switch(url.searchParams.get('range')) {
+            case 'week':
+                range = 8;
+                break;
+            case 'month':
+                range = 31;
+                break;
+            case 'three_months':
+                range = 93;
+                break;
+            case 'six_months':
+                range = 186;
+                break;
+            case 'year':
+                range = 366;
+                break;
+            case 'all':
+                range = -1;
+                break
+        }
+
+    } else if (range == 0) {
         range = 30 // in days
     }
 
