@@ -60,7 +60,12 @@ export async function load({params, url}) {
 
     // calls the api until there are no more results to get
     while (more) {
-        let data = await fetch(`https://www.strava.com/api/v3/athlete/activities?page=${page}&per_page=${per_page}&after=${epoch}`, {method: 'GET', headers: {'Authorization': `Bearer ${access_token}`}}).then(function (response) {
+        let fetchUrl = `https://www.strava.com/api/v3/athlete/activities?page=${page}&per_page=${per_page}&after=${epoch}`
+        if (range < 0) {
+            // if the range is of all time do not include after parameter
+            fetchUrl = `https://www.strava.com/api/v3/athlete/activities?page=${page}&per_page=${per_page}`
+        }
+        let data = await fetch(fetchUrl, {method: 'GET', headers: {'Authorization': `Bearer ${access_token}`}}).then(function (response) {
             if (response.ok) {
                 return response.json()
             }

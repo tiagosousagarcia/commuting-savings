@@ -30,10 +30,10 @@
 	function saveSettings() {
 		console.log('entered')
 		goto(`/?range=${range}`);
+		toggleSettingsPanel();
 
 	}
 
-	$: console.log(range);
 </script>
 
 {#if showPanel}
