@@ -1,10 +1,19 @@
 <script>
 	import { blur } from 'svelte/transition';
+	import RangeSelector from './RangeSelector.svelte';
+	import {goto} from '$app/navigation';
 	export let busCost;
     export let carCost;
     export let hours;
 
 	let showPanel = false;
+
+	import { page } from '$app/stores'
+	let range = $page.url.searchParams.get('range');
+
+	if (range === null) {
+		range = 'month';
+	}
 
     let defaults = {
         busCost: 3.5,
@@ -22,6 +31,13 @@
 	function toggleSettingsPanel() {
 		showPanel = !showPanel;
 	}
+
+	function saveSettings() {
+		goto(`/?range=${range}`);
+		toggleSettingsPanel();
+
+	}
+
 </script>
 
 {#if showPanel}
@@ -42,7 +58,7 @@
               From: "translate-x-0"
               To: "translate-x-full"
           -->
-					<div class="pointer-events-auto w-screen max-w-xs" transition:blur={{ duration: 500 }}>
+					<div class="pointer-events-auto w-screen max-w-xl" transition:blur={{ duration: 500 }}>
 						<div class="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
 							<div class="flex min-h-0 flex-1 flex-col overflow-y-scroll py-6">
 								<div class="px-4 sm:px-6">
@@ -81,7 +97,14 @@
 								</div>
 								<div class="relative mt-6 flex-1 px-4 sm:px-6">
 									<!-- Your content -->
-									<div class="space-y-8"><div>
+									<div class="space-y-8">
+										<div>
+											<label for="dateRange" class="block text-sm font-medium leading-6 text-gray-900">Range</label>
+											<div class="relative mt-2 rounded-md shadow-sm">
+											  <RangeSelector bind:range/>
+											</div>
+										  </div>
+										<div>
                                         <label for="busCost" class="block text-sm font-medium leading-6 text-gray-900">Bus cost per day</label>
                                         <div class="relative mt-2 rounded-md shadow-sm">
                                           <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -123,7 +146,7 @@
 								<button
 									type="submit"
 									class="ml-4 inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                                    on:click={toggleSettingsPanel}
+                                    on:click={saveSettings}
 									>Save</button
 								>
 							</div>
