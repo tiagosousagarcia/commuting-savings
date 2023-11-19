@@ -28,7 +28,7 @@ export async function load({params, url}) {
         }
 
     } else if (range == 0) {
-        range = 30 // in days
+        range = 31 // in days
     }
 
     // Gets current access token

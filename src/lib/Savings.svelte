@@ -16,7 +16,10 @@
 
 	export let data;
 </script>
+
+{#key data}
 <ConfigPanel bind:busCost bind:carCost bind:hours/>
 <TransSelector bind:comp/>
 <SummaryPanel {data} {comp} {busCost} {carCost} {hours}/>
-<Stats dataset={data}/>
+<Stats {data}/>
+{/key}

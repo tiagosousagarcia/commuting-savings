@@ -8,7 +8,12 @@
 
 	let showPanel = false;
 
-	let range = 'month';
+	import { page } from '$app/stores'
+	let range = $page.url.searchParams.get('range');
+
+	if (range === null) {
+		range = 'month';
+	}
 
     let defaults = {
         busCost: 3.5,
@@ -28,7 +33,6 @@
 	}
 
 	function saveSettings() {
-		console.log('entered')
 		goto(`/?range=${range}`);
 		toggleSettingsPanel();
 
